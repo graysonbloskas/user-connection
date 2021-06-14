@@ -19,7 +19,7 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
-// POST api/auth || Public || Authenticate User and Get Token
+// POST api/auth || LOGIN USER || Public || Authenticate User and Get Token
 router.post(
   '/',
   [

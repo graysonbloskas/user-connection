@@ -71,8 +71,8 @@ router.delete('/:id', auth, async (req, res) => {
     const post = await Post.findById(req.params.id);
 
     if (!post) {
-        return res.status(404).json({ msg: 'Post Not Found' });
-      }
+      return res.status(404).json({ msg: 'Post Not Found' });
+    }
 
     // Check user for delete auth
     if (post.user.toString() !== req.user.id) {
@@ -84,9 +84,63 @@ router.delete('/:id', auth, async (req, res) => {
   } catch (err) {
     console.error(err.message);
     if (err.kind === 'ObjectId') {
-        return res.status(404).json({ msg: 'Post Not Found' });
-      }
+      return res.status(404).json({ msg: 'Post Not Found' });
+    }
     res.status(500).send('Sever Error');
   }
 });
+
+// PUT api/posts/like/:id || Like Posts by Id || Private
+router.put('/like/:id', auth, async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+
+    // Check if the post has already been liked by this user
+
+    if (
+      post.likes.filter((like) => like.user.toString() === req.user.id).length >
+      0
+    ) {
+      return res.status(400).json({ msg: 'Post already liked' });
+    }
+
+    post.likes.unshift({ user: req.user.id });
+
+    await post.save();
+    res.json(post.likes);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Sever Error');
+  }
+});
+
+// PUT api/posts/unlike/:id || UnLike Posts by Id || Private
+router.put('/unlike/:id', auth, async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+
+    // Check if the post has already been liked by this user
+
+    if (
+      post.likes.filter((like) => like.user.toString() === req.user.id)
+        .length === 0
+    ) {
+      return res.status(400).json({ msg: 'Post has not been liked' });
+    }
+
+    // Get Remove Index
+    const removeIndex = post.likes
+      .map((like) => like.user.toString())
+      .indexOf(req.user.id);
+
+    post.likes.splice(removeIndex, 1);
+
+    await post.save();
+    res.json(post.likes);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Sever Error');
+  }
+});
+
 module.exports = router;

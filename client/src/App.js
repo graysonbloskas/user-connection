@@ -7,7 +7,7 @@ import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Alert from './components/layout/Alert';
 import Dashboard from './components/dashboard/Dashboard';
-import PrivateRoute from './components/private/PrivateRoute';
+import PrivateRoute from './components/routes/PrivateRoute';
 
 // Bring in redux
 import { Provider } from 'react-redux';

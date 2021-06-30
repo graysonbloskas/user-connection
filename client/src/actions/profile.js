@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { setAlert } from './alert';
+import api from '../utils/api';
 
 import {
   GET_PROFILE,
@@ -25,11 +26,13 @@ export const getCurrentProfile = () => async (dispatch) => {
   }
 };
 
+// BIG SIDE NOTE: axios.get was not working for getProfileById, so I made an api.js in utils that intercepts and handles any error message from the api call. 
+//Switched getProfiles and getProfileById to api.get, from axios.get
 // Get all profiles
 export const getProfiles = () => async (dispatch) => {
   dispatch({ type: CLEAR_PROFILE });
   try {
-    const res = await axios.get('api/profile');
+    const res = await api.get('/profile');
 
     dispatch({ type: GET_PROFILES, payload: res.data });
   } catch (err) {
@@ -41,9 +44,9 @@ export const getProfiles = () => async (dispatch) => {
 };
 
 // Get profile by id
-export const getProfilesById = (userId) => async (dispatch) => {
+export const getProfileById = (userId) => async (dispatch) => {
   try {
-    const res = await axios.get(`api/profile/user/${userId}`);
+    const res = await api.get(`/profile/user/${userId}`);
 
     dispatch({ type: GET_PROFILE, payload: res.data });
   } catch (err) {
@@ -207,7 +210,7 @@ export const deleteAccount = (id) => async (dispatch) => {
     )
   ) {
     try {
-      const res = await axios.delete('api/profile');
+      await axios.delete('api/profile');
 
       dispatch({
         type: CLEAR_PROFILE,

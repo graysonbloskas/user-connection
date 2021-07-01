@@ -11,7 +11,8 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
     getPosts();
   }, [getPosts]);
 
-  return loading ? (
+  return (
+  loading ? (
     <Spinner />
   ) : (
     <>
@@ -22,13 +23,14 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
       </p>
       <PostForm />
       <div className='posts'>
-        {posts.map((post) => (
+        {(posts && posts.length > 0) && posts.map(post => (
           <PostItem key={post._id} post={post} />
         ))}
       </div>
     </>
+  )
   );
-};
+  }
 
 Posts.propTypes = {
   getPosts: PropTypes.func.isRequired,

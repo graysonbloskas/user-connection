@@ -9,7 +9,7 @@ const app = express();
 connectDB();
 
 // init Middleware
-app.use(express.json({ extended: false }));
+app.use(express.json({ extended: true }));
 
 
 

@@ -8,8 +8,6 @@ const app = express();
 //connect db
 connectDB();
 
-
-
 // init Middleware
 app.use(express.json({ extended: false }));
 

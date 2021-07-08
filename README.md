@@ -11,16 +11,16 @@
   <p align="center">
     An app that allows Developers to Connect!
     <br />
-    <a href="https://powerful-lowlands-86013.herokuapp.com/"><strong>View Live Site »</strong></a>
+    <a href="https://powerful-lowlands-86013.herokuapp.com/" target="_blank" ><strong>View Live Site »</strong></a>
     <br />
-    <a href="https://github.com/graysonbloskas/user-connection.git"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/graysonbloskas/user-connection.git" target="_blank"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://powerful-lowlands-86013.herokuapp.com/">View Demo</a>
+    <a href="https://powerful-lowlands-86013.herokuapp.com/" target="_blank">View Demo</a>
     ·
-    <a href="https://github.com/graysonbloskas/user-connection/issues">Report Bug</a>
+    <a href="https://github.com/graysonbloskas/user-connection/issues" target="_blank">Report Bug</a>
     ·
-    <a href="https://github.com/graysonbloskas/user-connection/issues">Request Feature</a>
+    <a href="https://github.com/graysonbloskas/user-connection/issues" target="_blank">Request Feature</a>
   </p>
 </p>
 
